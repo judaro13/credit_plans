@@ -43,7 +43,7 @@ namespace :calculate do
         cp.risk_level = Random.rand(10)
         cp.save
       end
-#       sleep(25)
+      sleep(25)
       puts "."
     end
     puts "done"
