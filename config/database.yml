@@ -5,6 +5,7 @@ development:
   pool: 5
   username: ubuntu
   password: password1
+  host: cloudtaller2.cplwnx1lhyeo.us-west-2.rds.amazonaws.com
   
 production:
   adapter: postgresql

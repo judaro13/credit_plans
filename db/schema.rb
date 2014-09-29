@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140918162229) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: true do |t|
     t.string   "name",       default: "", null: false
     t.string   "path",       default: "", null: false
@@ -28,11 +31,11 @@ ActiveRecord::Schema.define(version: 20140918162229) do
     t.datetime "updated_at"
   end
 
-  add_index "credit_lines", ["account_id"], name: "index_credit_lines_on_account_id"
+  add_index "credit_lines", ["account_id"], name: "index_credit_lines_on_account_id", using: :btree
 
   create_table "credit_plans", force: true do |t|
     t.string   "document",       default: "",           null: false
-    t.date     "birth_date",     default: '2014-09-28', null: false
+    t.date     "birth_date",     default: '2014-09-29', null: false
     t.float    "amount",         default: 0.0,          null: false
     t.string   "state",          default: "En Proceso", null: false
     t.integer  "months",         default: 0,            null: false
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20140918162229) do
     t.datetime "updated_at"
   end
 
-  add_index "credit_plans", ["account_id"], name: "index_credit_plans_on_account_id"
-  add_index "credit_plans", ["credit_line_id"], name: "index_credit_plans_on_credit_line_id"
+  add_index "credit_plans", ["account_id"], name: "index_credit_plans_on_account_id", using: :btree
+  add_index "credit_plans", ["credit_line_id"], name: "index_credit_plans_on_credit_line_id", using: :btree
 
   create_table "fees", force: true do |t|
     t.integer  "month"
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 20140918162229) do
     t.datetime "updated_at"
   end
 
-  add_index "fees", ["credit_plan_id"], name: "index_fees_on_credit_plan_id"
+  add_index "fees", ["credit_plan_id"], name: "index_fees_on_credit_plan_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -78,8 +81,8 @@ ActiveRecord::Schema.define(version: 20140918162229) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["account_id"], name: "index_users_on_account_id"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
