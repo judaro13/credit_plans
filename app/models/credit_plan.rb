@@ -4,6 +4,8 @@ class CreditPlan < ActiveRecord::Base
 #   t.Float :amount
 #   t.String :state
 #   t.Integer :risk_level
+#   t.integer :months
+  has_many :fees
   belongs_to :account
   belongs_to :credit_line
 end

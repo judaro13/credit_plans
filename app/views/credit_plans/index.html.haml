@@ -1,0 +1,41 @@
+=render 'layouts/side_bar'
+    
+.col-lg-10
+  .panel.panel-primary
+    .panel-heading 
+      Planes de Crédito
+    .panel-body
+      .navbar-right{style: "margin-bottom: 10px"}
+      
+      %table{style: "margin-top: 10px", class: "table table-striped table-hover"}
+        %thead
+          %tr.active
+            %th Cédula
+            %th Valor del Prestamo
+            %th Plazo en meses
+            %th Linea de Crédito
+            %th Estado
+            %th Nivel de riesgo
+            %th Fecha solicitud
+            %th 
+        %tbody
+          - @credit_plans.each do |cl|
+            %tr
+              %td
+                = cl.document
+              %td
+                = cl.amount
+              %td
+                = cl.months
+              %td
+                = cl.credit_line.name
+              %td
+                = cl.state
+              %td
+                = cl.risk_level
+              %td
+                = cl.created_at
+              %td 
+                = link_to "Ver Detalle", credit_plan_path(@account, cl)             
+      .pagination
+        = will_paginate @credit_lines

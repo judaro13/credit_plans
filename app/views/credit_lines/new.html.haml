@@ -1,0 +1,12 @@
+
+=render 'layouts/side_bar'
+    
+.col-lg-10
+  .panel.panel-primary
+    .panel-heading 
+      Lineas de Credito
+    .panel-body
+      = form_for(@credit_line, url: credit_lines_path(@account), html: { class: "form-horizontal" }) do |f| 
+        %fieldset
+          %legend Nueva Linea de Credito
+          =render 'credit_lines/form', f:f

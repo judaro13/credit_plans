@@ -1,0 +1,35 @@
+.panel.panel-info
+  .panel-heading
+    %h3.panel-title
+      = @account.name
+      
+  .panel-body
+    = form_for(@credit_plan, url: create_credit_plan_path(@account), method: :post, html: { class: "form-horizontal" }) do |f| 
+      %fieldset
+        %legend 
+          Generar Plan de Créditos
+        .form-group
+          = f.label "Cédula", class: "col-lg-2 control-label"
+          .col-lg-10
+            = f.text_field :document, class: "form-control"
+        .form-group
+          = f.label "Fecha de nacimiento", class: "col-lg-2 control-label"
+          .col-lg-10
+            = f.text_field :birth_date, class: "form-control datepicker"
+        .form-group
+          = f.label "Valor del prestamo", class: "col-lg-2 control-label"
+          .col-lg-10
+            = f.text_field :amount, class: "form-control"
+        .form-group
+          = f.label "Linea de Credito", class: "col-lg-2 control-label"
+          .col-lg-10
+            = f.select(:credit_line_id, @credit_lines.map {|p| [ "#{p.name} - #{p.annual_interest}%", p.id ] }, {}, class: "form-control")
+        .form-group
+          = f.label "Plazo en meses", class: "col-lg-2 control-label"
+          .col-lg-10
+            = f.text_field :months, class: "form-control"
+
+        .form-group
+          .col-lg-10.col-lg-offset-2
+            %button.btn.btn-primary{:type => "submit"} Submit
+                

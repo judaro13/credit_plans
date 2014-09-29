@@ -1,6 +1,22 @@
 CreditPlans::Application.routes.draw do
-  devise_for :users
+  get '/:account_id/credit_plans', to: 'credit_plans#new', as: 'new_credit_plan'
+  post '/:account_id/credit_plans', to: 'credit_plans#create', as: 'create_credit_plan'
+  get '/:account_id/credit_plans/:id', to: 'credit_plans#status', as: 'check_credit_plan'
+  
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  
   root 'account#index'
+  
+  resources :account do
+    member do
+      resources :credit_lines
+      resources :credit_plans do
+        get :status
+      end
+    end
+  end
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

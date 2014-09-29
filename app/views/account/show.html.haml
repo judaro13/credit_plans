@@ -1,0 +1,20 @@
+
+=render 'layouts/side_bar'
+    
+.col-lg-10
+  .panel.panel-primary
+    .panel-heading 
+      ="Información General"
+    .panel-body
+      .form-horizontal
+        %fieldset
+          .form-group
+            %label.col-lg-2.control-label Cuenta
+            .col-lg-10
+              .col-lg-2.control-label
+                = @account.name
+          .form-group
+            %label.col-lg-2.control-label Url
+            .col-lg-10
+              .col-lg-2.control-label
+                = "http://localhost:3000/#{@account.id}/credit_plans"

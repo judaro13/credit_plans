@@ -32,9 +32,10 @@ ActiveRecord::Schema.define(version: 20140918162229) do
 
   create_table "credit_plans", force: true do |t|
     t.string   "document",       default: "",           null: false
-    t.date     "birth_date",     default: '2014-09-18', null: false
+    t.date     "birth_date",     default: '2014-09-28', null: false
     t.float    "amount",         default: 0.0,          null: false
     t.string   "state",          default: "En Proceso", null: false
+    t.integer  "months",         default: 0,            null: false
     t.integer  "risk_level"
     t.integer  "account_id"
     t.integer  "credit_line_id"
@@ -61,8 +62,9 @@ ActiveRecord::Schema.define(version: 20140918162229) do
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "name"
-    t.string   "last_name"
+    t.string   "name",                   default: "", null: false
+    t.string   "last_name",              default: "", null: false
+    t.string   "company_name",           default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

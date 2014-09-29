@@ -1,0 +1,14 @@
+
+.form-group
+  = f.label "Nombre", class: "col-lg-2 control-label"
+  .col-lg-10
+    = f.text_field :name, class: "form-control"
+.form-group
+  = f.label "Intereses", class: "col-lg-2 control-label"
+  .col-lg-10
+    = f.text_field :annual_interest, class: "form-control"
+
+.form-group
+  .col-lg-10.col-lg-offset-2
+    = link_to "Cancelar",  credit_lines_path(@account), class: "btn btn-default"
+    %button.btn.btn-primary{:type => "submit"} Submit

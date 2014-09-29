@@ -3,7 +3,7 @@
   %head
     %title CreditPlans
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = stylesheet_link_tag    "flatly.bootstrap"
+    = stylesheet_link_tag    "cerulean.bootstrap"
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = javascript_include_tag "https://code.jquery.com/jquery-1.10.2.min.js"
     = javascript_include_tag "http://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"
@@ -19,19 +19,10 @@
             %span.icon-bar
             %span.icon-bar
         #navbar-main.navbar-collapse.collapse
-          %ul.nav.navbar-nav           
-           
+          %ul.nav.navbar-nav   
           %ul.nav.navbar-nav.navbar-right
-            - if user_signed_in?
-              %li
-                = link_to "#{current_user.name} #{current_user.last_name}", "/"
-              %li
-                = link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'
-            - else
-              %li
-                = link_to "Crear Cuenta", new_user_registration_path, :class => 'navbar-link'
-              %li
-                = link_to "Ingresar", new_user_session_path, :class => 'navbar-link'
+            %li
+              = link_to @account.name, new_credit_plan_path(@account.id)
     .container
       #banner.page-header
         .row
