@@ -27,8 +27,12 @@ class CreditLinesController < ApplicationController
   end
   
   def update
-    @credit_line = @account.credit_lines.find(params[:id])
-    
+    @credit_line = @account.credit_lines.find(credit_line_params)
+    if @credit_line.update_attributes(params[:credit_line])
+      redirect_to credit_lines_path(@account), :notice => "La linea de crédito se actualizo exitosamente"
+    else
+      redirect_to new_credit_line_path(@account), :alert => "La linea de crédito no pudo ser actualizada"
+    end
   end
   
   def destroy
