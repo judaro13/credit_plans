@@ -22,21 +22,26 @@ class CreditLinesController < ApplicationController
     if @credit_line.save
       redirect_to credit_lines_path(@account), :notice => "La linea de crédito se creo exitosamente"
     else
-      redirect_to new_credit_line_path(@account), :alert => "Todos los campos son requeridos"
+      redirect_to new_credit_line_path(@account), :alert => @credit_line.errors.full_messages.to_sentence
     end
   end
   
   def update
-    @credit_line = @account.credit_lines.find(credit_line_params)
-    if @credit_line.update_attributes(params[:credit_line])
+    @credit_line = @account.credit_lines.find(params[:id])
+    if @credit_line.update_attributes(credit_line_params)
       redirect_to credit_lines_path(@account), :notice => "La linea de crédito se actualizo exitosamente"
     else
-      redirect_to new_credit_line_path(@account), :alert => "La linea de crédito no pudo ser actualizada"
+      redirect_to new_credit_line_path(@account), :alert => @credit_line.errors.full_messages.to_sentence
     end
   end
   
   def destroy
-    @credit_line = @account.credit_lines.find(params[:credit_line_id])
+    @credit_line = @account.credit_lines.find(params[:id])
+    if @credit_line.destroy
+      redirect_to credit_lines_path(@account), :notice => "La linea de crédito se borró exitosamente"
+    else
+      redirect_to new_credit_line_path(@account), :alert => @credit_line.errors.full_messages.to_sentence
+    end
   end
   
   private

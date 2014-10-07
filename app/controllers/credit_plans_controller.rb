@@ -23,7 +23,7 @@ class CreditPlansController < ApplicationController
     if @credit_plan.save
       redirect_to check_credit_plan_path(@account, @credit_plan), notice: "Su plan fue creado con éxito"
     else
-      redirect_to new_credit_plan_path(@account, @credit_plan), alert: "Todos los campos son requeridos"
+      redirect_to new_credit_plan_path(@account, @credit_plan), alert: @credit_plan.errors.full_messages.to_sentence
     end
   end
   
