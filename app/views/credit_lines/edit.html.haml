@@ -6,7 +6,7 @@
     .panel-heading 
       Lineas de Credito
     .panel-body
-      = form_for(@credit_line, url: credit_lines_path(@account), method: :patch, html: { class: "form-horizontal" }) do |f| 
+      = form_for(@credit_line, url: credit_line_path(@account, @credit_line), method: :patch, html: { class: "form-horizontal" }) do |f| 
         %fieldset
           %legend 
             = "Editar Linea de Credito: #{@credit_line.name}"

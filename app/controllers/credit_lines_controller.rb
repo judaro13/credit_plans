@@ -27,7 +27,8 @@ class CreditLinesController < ApplicationController
   end
   
   def update
-    @credit_line = @account.credit_lines.find(params[:credit_line_id])
+    @credit_line = @account.credit_lines.find(params[:id])
+    
   end
   
   def destroy
