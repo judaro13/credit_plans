@@ -50,7 +50,7 @@
             %th Pago Mensual
             %th Saldo
         %tbody
-          - @credit_plan.fees.each do |fee|
+          - @credit_plan.fees.order(id: :asc).each do |fee|
             %tr
               %td
                 = fee.month
