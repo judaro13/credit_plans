@@ -20,9 +20,9 @@ class CreditPlan
   after_create :send_task
   
   def send_task
-    sqs = AWS::SQS.new
-    queue = sqs.queues.named("Worker")
-    queue.send_message({ plan_id: self.id }.to_json)
+    Resque.enqueue(EnquenqueModelJob, {object: self.class.to_s,
+                                       id: self.id.to_s,
+                                       action: 'calculate_fees'})
   end
   
   def calculate_fees
