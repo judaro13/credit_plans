@@ -11,6 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'haml'
 gem 'will_paginate_mongoid'
 
+gem 'resque', "~> 1.22.0"
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -19,6 +20,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'pry'
 gem 'jbuilder', '~> 1.2'
+
+gem 'dalli'
 
 group :doc do
   gem 'sdoc', require: false
