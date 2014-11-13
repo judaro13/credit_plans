@@ -1,8 +1,12 @@
-class Fee < ActiveRecord::Base
-#   t.Integer :month
-#   t.Float :interest
-#   t.Float :amortization
-#   t.Float :payment
-#   t.Float :balance
+class Fee 
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  
+  field :month, type: Integer
+  field :interest, type: Float
+  field :amortization, type: Float
+  field :payment, type: Float
+  field :balance, type: Float
+  
   belongs_to :credit_plan
 end

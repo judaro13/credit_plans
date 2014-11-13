@@ -1,6 +1,10 @@
-class CreditLine < ActiveRecord::Base
-#   t.String :name
-#   t.Float :annual_interest
+class CreditLine 
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  
+  field :name, type: String
+  field :annual_interest, type: Float
+  
   belongs_to :account
   has_many :credit_plans, :dependent => :destroy
   

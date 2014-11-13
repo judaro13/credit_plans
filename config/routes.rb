@@ -1,9 +1,10 @@
 CreditPlans::Application.routes.draw do
+  devise_for :users, :controllers => { registrations: 'registrations' }
   get '/:account_id/credit_plans', to: 'credit_plans#new', as: 'new_credit_plan'
   post '/:account_id/credit_plans', to: 'credit_plans#create', as: 'create_credit_plan'
   get '/:account_id/credit_plans/:id', to: 'credit_plans#status', as: 'check_credit_plan'
   
-  devise_for :users, :controllers => { registrations: 'registrations' }
+#   devise_for :users
   
   root 'account#index'
   

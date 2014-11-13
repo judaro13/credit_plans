@@ -2,14 +2,14 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '4.0.4'
-gem 'pg'
+gem 'mongoid', github: 'mongoid/mongoid'
 gem 'devise'
 
 gem 'sass-rails', '~> 4.0.2'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'haml'
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate_mongoid'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
