@@ -1,33 +1,25 @@
 development:
-  sessions:
-    default:
-
-      database: credit_plans_development
-
-      hosts:
-        - localhost:27017
-      options:
-
-  options:
-
-test:
-  sessions:
-    default:
-      database: credit_plans_test
-      hosts:
-        - localhost:27017
-      options:
-        read: primary
-        # In the test environment we lower the retries and retry interval to
-        # low amounts for fast failures.
-        max_retries: 1
-        retry_interval: 0
-        
+  #sessions:
+    #default:
+      #database: credit_plans_development
+      #hosts:
+        #- localhost:27017
+      #options:
+  #options:
+ sessions:
+   default:
+     uri: 'mongodb://heroku_app31555654:nhe414lh57j98rvpdsbo661mrt@ds053140.mongolab.com:53140/heroku_app31555654'
+     options:
+       max_retries: 30
+       retry_interval: 1
+       timeout: 15
+       refresh_interval: 10
 production:
-  sessions:
-    default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
-      options:
-        consistency: :strong
-        max_retries: 1
-        retry_interval: 0
+ sessions:
+   default:
+     uri: 'mongodb://heroku_app31555654:nhe414lh57j98rvpdsbo661mrt@ds053140.mongolab.com:53140/heroku_app31555654'
+     options:
+       max_retries: 30
+       retry_interval: 1
+       timeout: 15
+       refresh_interval: 10
