@@ -2,12 +2,12 @@ class CreditPlan
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  field :document, type: String
+  field :document,   type: String
   field :birth_date, type: Date
-  field :amount, type: Float
-  field :state, type: String
+  field :amount,     type: Float
+  field :state,      type: String, default: 'En Proceso'
   field :risk_level, type: Integer
-  field :months, type: Integer
+  field :months,     type: Integer
   
   has_many :fees, :dependent => :destroy
   belongs_to :account
