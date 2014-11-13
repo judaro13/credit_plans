@@ -1,6 +1,4 @@
-class EnquenqueModelJob
-  include Resque::Plugins::Status
-  
+class EnquenqueModelJob  
   @queue = :imports
   attr_accessor :message
   
