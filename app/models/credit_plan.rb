@@ -69,6 +69,7 @@ class CreditPlan
       cp.state = 'Procesado'
       cp.risk_level = Random.rand(10)
       cp.save
+      sleep(25)  
     end
   end
 end
