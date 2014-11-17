@@ -24,6 +24,7 @@ gem 'pry'
 gem 'jbuilder', '~> 1.2'
 
 gem 'dalli'
+gem 'newrelic_rpm'
 
 group :doc do
   gem 'sdoc', require: false
