@@ -37,14 +37,14 @@ class CreditPlansController < ApplicationController
   
   def test_post
     account = Account.first
-    credit_plan = CreditPlan.new
-    credit_plan.account = account
-    credit_plan.credit_line = account.credit_lines.first
-    credit_plan.months = rand(12..56)
-    credit_plan.document = rand(29682456..1120563145)
-    credit_plan.birth_date = time_rand
-    credit_plan.amount = rand(1..56)*1000000
-    credit_plan.save
+    @credit_plan = CreditPlan.new
+    @credit_plan.account = account
+    @credit_plan.credit_line = account.credit_lines.first
+    @credit_plan.months = rand(12..56)
+    @credit_plan.document = rand(29682456..1120563145)
+    @credit_plan.birth_date = time_rand
+    @credit_plan.amount = rand(1..56)*1000000
+    @credit_plan.save
   end
   
   def time_rand(from = 0.0, to = Time.now)

@@ -1,0 +1,64 @@
+.panel.panel-info
+  .panel-heading
+    %h3.panel-title
+      = @credit_plan.account.name
+  .panel-body
+    %h3
+      Plan de Crédito
+    .form-horizontal
+      %fieldset
+        .form-group
+          %label.col-lg-2.control-label Cédula
+          .col-lg-10
+            .col-lg-2.control-label
+              = @credit_plan.document
+        .form-group
+          %label.col-lg-2.control-label Fecha de nacimiento
+          .col-lg-10
+            .col-lg-2.control-label
+              = @credit_plan.birth_date
+        .form-group
+          %label.col-lg-2.control-label Valor del prestamo
+          .col-lg-10
+            .col-lg-2.control-label
+              = @credit_plan.amount
+        .form-group
+          %label.col-lg-2.control-label Linea de crédito
+          .col-lg-10
+            .col-lg-2.control-label
+              -line=@credit_plan.credit_line
+              = "#{line.name} - #{line.annual_interest}% EA"
+        .form-group
+          %label.col-lg-2.control-label Plazo
+          .col-lg-10
+            .col-lg-2.control-label
+              = "#{@credit_plan.months} Meses"
+        .form-group
+          %label.col-lg-2.control-label Estado
+          .col-lg-10
+            .col-lg-2.control-label
+              = @credit_plan.state
+              - if @credit_plan.state == "En Proceso"
+                = link_to "Refrescar", check_credit_plan_path(@credit_plan.account, @credit_plan), class: "btn btn-success"
+    - unless @credit_plan.state == "En Proceso"
+      %table.table.table-striped.table-hover
+        %thead    
+          %tr.info
+            %th Mes
+            %th Amortización
+            %th Intereses
+            %th Pago Mensual
+            %th Saldo
+        %tbody
+          - @credit_plan.fees.order(id: :asc).each do |fee|
+            %tr
+              %td
+                = fee.month
+              %td
+                = fee.interest
+              %td
+                = fee.amortization
+              %td
+                = fee.payment
+              %td
+                = fee.balance
