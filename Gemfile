@@ -11,7 +11,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'haml'
 gem 'will_paginate_mongoid'
 
-gem 'resque', "~> 1.22.0"
+gem 'delayed_job_mongoid'
+gem 'daemons'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

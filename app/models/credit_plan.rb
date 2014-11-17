@@ -20,15 +20,15 @@ class CreditPlan
   after_create :send_task
   
   def send_task
-    Resque.enqueue(EnquenqueModelJob, {object: self.class.to_s,
-                                       id: self.id.to_s,
-                                       action: 'calculate_fees'})
+    CreditPlan.delay.calculate_fees(self.id)
   end
   
-  def calculate_fees
-    monto = self.amount
-    plazos = self.months
-    taza = self.credit_line.annual_interest/100.0
+  def self.calculate_fees(id)
+    cp = CreditPlan.find(id)
+    
+    monto = cp.amount
+    plazos = cp.months
+    taza = cp.credit_line.annual_interest/100.0
     
     a = (1+taza) ** (plazos*-1)
     cuota_fija = monto/((1-a)/taza)
@@ -38,14 +38,14 @@ class CreditPlan
     balance =  monto-total_amortizado
     amortizado = cuota_fija-intereses
     
-    unless self.fees.empty?
-      self.fees.delete_all
+    unless cp.fees.empty?
+      cp.fees.delete_all
     end
     
     errors = false
     for i in 1..plazos
       fee = Fee.new
-      fee.credit_plan_id = self.id
+      fee.credit_plan_id = cp.id
       fee.month = i
       fee.interest = intereses.to_i
       fee.amortization = amortizado.to_i
@@ -59,16 +59,16 @@ class CreditPlan
       
       unless fee.save   
         puts "fee no grabo: #{fee.inspect}"
-        self.fees.delete_all
+        cp.fees.delete_all
         errors = true
         return
       end
     end
     
     unless errors
-      self.state = 'Procesado'
-      self.risk_level = Random.rand(10)
-      self.save
+      cp.state = 'Procesado'
+      cp.risk_level = Random.rand(10)
+      cp.save
     end
   end
 end
